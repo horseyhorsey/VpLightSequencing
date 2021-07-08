@@ -1,0 +1,118 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>Vp Light Sequencing</AssemblyName>
+    <ApplicationIcon>Basic-Lamp.ico</ApplicationIcon>
+    <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Image\SeqAll.gif" />
+    <None Remove="Image\SeqArcBottomLeftDown.gif" />
+    <None Remove="Image\SeqArcBottomLeftUp.gif" />
+    <None Remove="Image\SeqArcBottomRightDown.gif" />
+    <None Remove="Image\SeqArcBottomRightUp.gif" />
+    <None Remove="Image\SeqArcTopLeftDown.gif" />
+    <None Remove="Image\SeqArcTopLeftUp.gif" />
+    <None Remove="Image\SeqArcTopRightDown.gif" />
+    <None Remove="Image\SeqArcTopRightUp.gif" />
+    <None Remove="Image\SeqCircleIn.gif" />
+    <None Remove="Image\SeqCircleOut.gif" />
+    <None Remove="Image\SeqClockLeft.gif" />
+    <None Remove="Image\SeqClockRight.gif" />
+    <None Remove="Image\SeqDiagDownLeft.gif" />
+    <None Remove="Image\SeqDiagDownRight.gif" />
+    <None Remove="Image\SeqDiagUpLeft.gif" />
+    <None Remove="Image\SeqDiagUpRight.gif" />
+    <None Remove="Image\SeqDown.gif" />
+    <None Remove="Image\SeqFanLeftDown.gif" />
+    <None Remove="Image\SeqFanLeftUp.gif" />
+    <None Remove="Image\SeqFanRightDown.gif" />
+    <None Remove="Image\SeqFanRightUp.gif" />
+    <None Remove="Image\SeqHatch1Horiz.gif" />
+    <None Remove="Image\SeqHatch1Vert.gif" />
+    <None Remove="Image\SeqHatch2Horiz.gif" />
+    <None Remove="Image\SeqHatch2Vert.gif" />
+    <None Remove="Image\SeqLeft.gif" />
+    <None Remove="Image\SeqMiddleInHoriz.gif" />
+    <None Remove="Image\SeqMiddleInVert.gif" />
+    <None Remove="Image\SeqMiddleOutHoriz.gif" />
+    <None Remove="Image\SeqMiddleOutVert.gif" />
+    <None Remove="Image\SeqRadarLeft.gif" />
+    <None Remove="Image\SeqRadarRight.gif" />
+    <None Remove="Image\SeqRandom.gif" />
+    <None Remove="Image\SeqRight.gif" />
+    <None Remove="Image\SeqScrewLeft.gif" />
+    <None Remove="Image\SeqScrewRight.gif" />
+    <None Remove="Image\SeqStripe1Horiz.gif" />
+    <None Remove="Image\SeqStripe1Vert.gif" />
+    <None Remove="Image\SeqStripe2Horiz.gif" />
+    <None Remove="Image\SeqStripe2Vert.gif" />
+    <None Remove="Image\SeqUp.gif" />
+    <None Remove="Image\SeqWiperLeft.gif" />
+    <None Remove="Image\SeqWiperRight.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Prism.Unity" Version="8.1.97" />
+    <PackageReference Include="Prism.Wpf" Version="8.1.97" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VpLightSequencing.Domain\VpLightSequencing.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\SeqAll.gif" />
+    <Resource Include="Image\SeqArcBottomLeftDown.gif" />
+    <Resource Include="Image\SeqArcBottomLeftUp.gif" />
+    <Resource Include="Image\SeqArcBottomRightDown.gif" />
+    <Resource Include="Image\SeqArcBottomRightUp.gif" />
+    <Resource Include="Image\SeqArcTopLeftDown.gif" />
+    <Resource Include="Image\SeqArcTopLeftUp.gif" />
+    <Resource Include="Image\SeqArcTopRightDown.gif" />
+    <Resource Include="Image\SeqArcTopRightUp.gif" />
+    <Resource Include="Image\SeqCircleIn.gif">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\SeqCircleOut.gif" />
+    <Resource Include="Image\SeqClockLeft.gif" />
+    <Resource Include="Image\SeqClockRight.gif" />
+    <Resource Include="Image\SeqDiagDownLeft.gif" />
+    <Resource Include="Image\SeqDiagDownRight.gif" />
+    <Resource Include="Image\SeqDiagUpLeft.gif" />
+    <Resource Include="Image\SeqDiagUpRight.gif" />
+    <Resource Include="Image\SeqDown.gif" />
+    <Resource Include="Image\SeqFanLeftDown.gif" />
+    <Resource Include="Image\SeqFanLeftUp.gif" />
+    <Resource Include="Image\SeqFanRightDown.gif" />
+    <Resource Include="Image\SeqFanRightUp.gif" />
+    <Resource Include="Image\SeqHatch1Horiz.gif" />
+    <Resource Include="Image\SeqHatch1Vert.gif" />
+    <Resource Include="Image\SeqHatch2Horiz.gif" />
+    <Resource Include="Image\SeqHatch2Vert.gif" />
+    <Resource Include="Image\SeqLeft.gif" />
+    <Resource Include="Image\SeqMiddleInHoriz.gif" />
+    <Resource Include="Image\SeqMiddleInVert.gif" />
+    <Resource Include="Image\SeqMiddleOutHoriz.gif" />
+    <Resource Include="Image\SeqMiddleOutVert.gif" />
+    <Resource Include="Image\SeqRadarLeft.gif" />
+    <Resource Include="Image\SeqRadarRight.gif" />
+    <Resource Include="Image\SeqRandom.gif" />
+    <Resource Include="Image\SeqRight.gif" />
+    <Resource Include="Image\SeqScrewLeft.gif" />
+    <Resource Include="Image\SeqScrewRight.gif" />
+    <Resource Include="Image\SeqStripe1Horiz.gif" />
+    <Resource Include="Image\SeqStripe1Vert.gif" />
+    <Resource Include="Image\SeqStripe2Horiz.gif" />
+    <Resource Include="Image\SeqStripe2Vert.gif" />
+    <Resource Include="Image\SeqUp.gif" />
+    <Resource Include="Image\SeqWiperLeft.gif" />
+    <Resource Include="Image\SeqWiperRight.gif" />
+  </ItemGroup>
+
+</Project>
