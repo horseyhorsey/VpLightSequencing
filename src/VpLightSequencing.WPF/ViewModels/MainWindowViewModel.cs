@@ -5,6 +5,7 @@ using Prism.Mvvm;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -14,10 +15,13 @@ namespace VpLightSequencing.WPF.ViewModels
     public class MainWindowViewModel : BindableBase
     {
         private readonly IEventAggregator eventAggregator;
+        private const string TITLE = "VP Light Sequencing";
 
         #region Commands
+        public DelegateCommand ClearShowCommand { get; private set; }
         public DelegateCommand LoadShowCommand { get; private set; }
-        public DelegateCommand SaveShowCommand { get; private set; }
+        public DelegateCommand SaveShowCommand { get; private set; }        
+        public DelegateCommand ShowGuideCommand { get; private set; }
         #endregion
 
         #region Properties
@@ -26,7 +30,8 @@ namespace VpLightSequencing.WPF.ViewModels
         /// </summary>
         public string LightSeqName { get; set; } = "LightSeq001";
         public string LampshowInformation { get; set; }
-        public string Script { get; set; } 
+        public string Script { get; set; }
+        public string Title { get; set; } = TITLE;
         #endregion
 
         [PropertyChanged.DoNotNotify]
@@ -42,16 +47,26 @@ namespace VpLightSequencing.WPF.ViewModels
 
         public MainWindowViewModel(IEventAggregator eventAggregator)
         {
-            //LightSequenceViewModel = new LightSequenceViewModel() { Name = Sequence.SeqUpOn};
-
-            //LightSequenceViewModels.Add(LightSequenceViewModel);
-
             LightSequenceViewModels.CollectionChanged += LightSequenceViewModels_CollectionChanged;
             this.eventAggregator = eventAggregator;
             this.eventAggregator.GetEvent<ListUpdatedEvent>().Subscribe(() => { UpdateScript(); });
 
             LoadShowCommand = new DelegateCommand(OnLoadShow, () => true);
             SaveShowCommand = new DelegateCommand(OnSaveShow, CanSaveShow);
+            ClearShowCommand = new DelegateCommand(() => { LightSequenceViewModels?.Clear(); Title = TITLE; }, CanSaveShow);
+            ShowGuideCommand = new DelegateCommand(() => 
+            {
+                try
+                {
+                    var guideHtmFile = Path.Combine(Directory.GetCurrentDirectory(), "Light Sequencer.htm");
+                    var p = new Process() { StartInfo = new ProcessStartInfo() { UseShellExecute = true, FileName = guideHtmFile } };
+                    p.Start();
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show(ex.Message);
+                }
+            }, () => true);
         }
         #endregion
 
@@ -102,6 +117,7 @@ namespace VpLightSequencing.WPF.ViewModels
                                 LightSequenceViewModels.Add(item);
                             }
 
+                            Title = $"{TITLE} - Loaded Show: {Path.GetFileName(dialog.FileName)}";
                             LightSeqName = vm.LightSeqName;
                             Script = vm.Script;
                         }
@@ -139,11 +155,12 @@ namespace VpLightSequencing.WPF.ViewModels
             {
                 foreach (var item in e?.OldItems)
                 {
-                    var sss = item as LightSequenceViewModel;
-                    sss.PropertyChanged -= SeqVmPropertyChanged;
+                    var seqVm = item as LightSequenceViewModel;
+                    seqVm.PropertyChanged -= SeqVmPropertyChanged;
                 }
             }
 
+            ClearShowCommand.RaiseCanExecuteChanged();
             SaveShowCommand.RaiseCanExecuteChanged();
         }
 
@@ -164,9 +181,19 @@ namespace VpLightSequencing.WPF.ViewModels
         {
             LampshowInformation = $"Total length: {LightSequenceViewModels.Sum(x => x.Length)}";
             Script = null;
-            foreach (var item in LightSequenceViewModels)
+
+            for (int i = 0; i < LightSequenceViewModels.Count; i++)
             {
-                Script += item.ToString(LightSeqName) + Environment.NewLine;
+                if(i != 0)
+                {
+                    //if the previous sequence interval the same as this one then skip adding another line of script
+                    bool intervalMatched = LightSequenceViewModels[i-1].Interval == LightSequenceViewModels[i].Interval;
+                    Script += LightSequenceViewModels[i].ToString(LightSeqName, !intervalMatched) + Environment.NewLine;
+                }
+                else //always add update interval to first line
+                {
+                    Script += LightSequenceViewModels[i].ToString(LightSeqName) + Environment.NewLine;
+                }                
             }
         }         
         #endregion

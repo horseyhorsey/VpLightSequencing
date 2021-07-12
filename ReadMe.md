@@ -18,5 +18,5 @@ Generates script for a Visual Pinball light sequencer
 ## Guide / Sequencer (Black)
 ---
 
-VP Example table with docs [VpForumDownload](https://www.vpforums.org/index.php?app=downloads&showfile=3618)
+VP Example table with docs [Vpforums.org Download](https://www.vpforums.org/index.php?app=downloads&showfile=3618)
 

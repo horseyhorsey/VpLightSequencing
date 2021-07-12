@@ -29,11 +29,11 @@ namespace VpLightSequencing.WPF.ViewModels
         /// Returns update interval and command
         /// </summary>
         /// <returns></returns>
-        public string ToString(string lightSeqName = "LightSeqAttract")
+        public string ToString(string lightSeqName = "LightSeqAttract", bool addUpdateInterval = true)
         {
-            var cmd = $"{lightSeqName}.UpdateInterval = {Interval}\n";
-            cmd += $"{lightSeqName}.Play {Name},";
-            cmd += $"{Tail},{Repeat},{Pause} ' total ms: {Length}";
+            string cmd = string.Empty;
+            if(addUpdateInterval) cmd = $"{lightSeqName}.UpdateInterval = {Interval}\n";
+            cmd += $"{lightSeqName}.Play {Name},{Tail},{Repeat},{Pause}' total ms: {Length}";
             return cmd;
         }
     }

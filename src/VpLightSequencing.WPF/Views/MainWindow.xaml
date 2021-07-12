@@ -7,7 +7,7 @@
         xmlns:domain="clr-namespace:VpLightSequencing.Domain;assembly=VpLightSequencing.Domain" 
         xmlns:converters="clr-namespace:VpLightSequencing.WPF.Converters"
         mc:Ignorable="d"
-        Title="VP Light Sequencing" Height="450" Width="800">
+        Title="{Binding Title}" Height="450" Width="800">
 
     <Window.Resources>
 
@@ -49,6 +49,10 @@
             <StackPanel Orientation="Horizontal" Margin="3" HorizontalAlignment="Left">
                 <Button Command="{Binding LoadShowCommand}" Margin="3">LOAD</Button>
                 <Button Command="{Binding SaveShowCommand}" Margin="3">SAVE</Button>
+                <Button Command="{Binding ClearShowCommand}" Margin="63,3" HorizontalAlignment="Stretch">CLEAR</Button>
+                <Button Command="{Binding ShowGuideCommand}" Margin="3" HorizontalAlignment="Stretch"
+                        ToolTip="Written guide by Black (author of light sequencer)"
+                        >GUIDE</Button>
             </StackPanel>
 
             <TextBlock Text="{Binding LampshowInformation}" Margin="3" HorizontalAlignment="Right" Grid.Column="1"/>
