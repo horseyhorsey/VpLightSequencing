@@ -20,3 +20,4 @@ Generates script for a Visual Pinball light sequencer
 
 VP Example table with docs [Vpforums.org Download](https://www.vpforums.org/index.php?app=downloads&showfile=3618)
 
+![image](https://user-images.githubusercontent.com/5377332/124993518-5db90c00-e03c-11eb-931b-0cfd4d4cdcce.png)
